@@ -1,9 +1,12 @@
 // dom elements
 let prev = document.querySelector('#prevOp');
 let buttons = document.querySelectorAll('#button');
-let prevOpValue = []; // a
-let curOpValue = []; // b
-let operator = [];
+let buttonOperator = document.querySelectorAll('#button-operator');
+
+// variables
+let prevOpValue = ''; // a
+let curOpValue = ''; // b
+let operator = '';
 
 // function to append the clicked button to our screen div
  buttons.forEach(function(button) {
@@ -12,11 +15,29 @@ let operator = [];
         button.value = e.target.value;
 
         // pushes the value to the displayValue array
-        curOpValue.push(button.value)
+        // curOpValue.push(button.value)
+
+        prevOpValue += button.value;
+        console.log(prevOpValue);
 
         // append to our screen
         prev.append(e.target.value)
-        console.log(displayValue)
+
+    })
+})
+
+
+
+// operator buttons event listener
+buttonOperator.forEach(function(button) {
+    button.addEventListener('click', function(e) {
+        button.value = e.target.value;
+
+        // pushes the operator to the operator array
+        operator.push(button.value)
+
+        // append to our screen
+        prev.append(e.target.value)
     })
 })
 
@@ -29,6 +50,7 @@ function add(a,b) {
 function subtract(a,b) {
     return a - b
 }
+
 
 // multiply
 function multiply(a,b) {
