@@ -1,23 +1,24 @@
-
-//user inputs a number
-
 // dom elements
 let prev = document.querySelector('#prevOp');
-let buttons = document.querySelectorAll('#button')
+let buttons = document.querySelectorAll('#button');
+let prevOpValue = []; // a
+let curOpValue = []; // b
+let operator = [];
 
 // function to append the clicked button to our screen div
-
  buttons.forEach(function(button) {
     button.addEventListener('click', function(e) {
+        // assigns the value to the btn
         button.value = e.target.value;
-        console.log(button.value)
+
+        // pushes the value to the displayValue array
+        curOpValue.push(button.value)
+
+        // append to our screen
         prev.append(e.target.value)
+        console.log(displayValue)
     })
 })
-
-// buttons.forEach(button => button.addEventListener('click', function(e) {
-//     console.log(e.target)
-// }))
 
 // add
 function add(a,b) {
@@ -34,11 +35,12 @@ function multiply(a,b) {
     return a * b
 }
 
-
 // divide
 function divide(a,b) {
     return a / b
 }
+
+
 
 // operate function, used a switch statement to switch operators depending on the need
 function operate(operator, a, b) {
