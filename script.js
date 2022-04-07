@@ -1,3 +1,24 @@
+
+//user inputs a number
+
+// dom elements
+let prev = document.querySelector('#prevOp');
+let buttons = document.querySelectorAll('#button')
+
+// function to append the clicked button to our screen div
+
+ buttons.forEach(function(button) {
+    button.addEventListener('click', function(e) {
+        button.value = e.target.value;
+        console.log(button.value)
+        prev.append(e.target.value)
+    })
+})
+
+// buttons.forEach(button => button.addEventListener('click', function(e) {
+//     console.log(e.target)
+// }))
+
 // add
 function add(a,b) {
     return a + b
@@ -19,6 +40,7 @@ function divide(a,b) {
     return a / b
 }
 
+// operate function, used a switch statement to switch operators depending on the need
 function operate(operator, a, b) {
     switch(operator) {
         case '+':
