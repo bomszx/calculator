@@ -3,30 +3,27 @@ let prev = document.querySelector('#prevOp');
 let buttons = document.querySelectorAll('#button');
 let buttonOperator = document.querySelectorAll('#button-operator');
 
+//store input in an array, find out a way to iterate over said array and 'evaluate' each item
+
 // variables
-let prevOpValue = ''; // a
-let curOpValue = ''; // b
-let operator = '';
+let value = [];
+let input = document.querySelector('#prevOp')
 
 // function to append the clicked button to our screen div
  buttons.forEach(function(button) {
     button.addEventListener('click', function(e) {
         // assigns the value to the btn
         button.value = e.target.value;
+        value.push(button.value)
 
-        // pushes the value to the displayValue array
-        // curOpValue.push(button.value)
-
-        prevOpValue += button.value;
-        console.log(prevOpValue);
+        // gives us a string form of the input value, now we need to use the operate func on this value
+        prevOpValue = button.value;
+        console.log(value);
 
         // append to our screen
-        prev.append(e.target.value)
-
+        prev.append(prevOpValue)
     })
 })
-
-
 
 // operator buttons event listener
 buttonOperator.forEach(function(button) {
@@ -34,12 +31,16 @@ buttonOperator.forEach(function(button) {
         button.value = e.target.value;
 
         // pushes the operator to the operator array
-        operator.push(button.value)
+        operator = button.value;
+        value.push(operator)
+        console.log(value)
 
         // append to our screen
         prev.append(e.target.value)
     })
 })
+
+
 
 // add
 function add(a,b) {
