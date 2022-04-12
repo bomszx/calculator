@@ -5,23 +5,31 @@ let buttons = document.querySelectorAll('#button');
 let buttonOperator = document.querySelectorAll('#button-operator');
 let equalsBtn = document.querySelector('.equals')
 
-//store input in an array, find out a way to iterate over said array and 'evaluate' each item
 
 // variables
-let values = [];
+let prevOp = [];
+let curOp = [];
+let operators = [];
+
 let input = document.querySelector('#prevOp')
 
+
+// create the function that will append to the screen
+
+// pass the operator value, pass the a value then b value to the operate function?
+
+// store input in an array, find out a way to iterate over said array and 'evaluate' each item
 
 // function to append the clicked button to our screen div
  buttons.forEach(function(button) {
     button.addEventListener('click', function(e) {
         // assigns the value to the btn
         button.value = e.target.value;
-        values.push(button.value)
+        prevOp.push(button.value)
 
         // gives us a string form of the input value, now we need to use the operate func on this value
         prevOpValue = button.value;
-        console.log(values);
+        console.log(prevOp);
 
         // append to our screen
         prev.append(prevOpValue)
@@ -30,57 +38,36 @@ let input = document.querySelector('#prevOp')
 
 // operator buttons event listener
 buttonOperator.forEach(function(button) {
-    button.addEventListener('click', function(e) {
-        button.value = e.target.value;
-
-        // pushes the operator to the operator array
-        operator = button.value;
-        values.push(operator)
-        console.log(values)
-
-        // append to our screen
-        prev.append(e.target.value)
-
-    })
+    button.addEventListener('click', populateScreen);
 })
 
-// trying to add the equals function to our equals button, equals function will try to evaluate the elements in the array
+// function(e) {
+//     button.value = e.target.value;
+
+//     // pushes the operator to the operator array
+//     operator = button.value;
+//     operators.push(operator)
+
+//     // append to our screen
+//     prev.append(e.target.value)
+//     return operator;
+// })
 
 // equalsBtn event listener
-
-equalsBtn.addEventListener('click', function(e) {
-    console.log(e)
-})
+equalsBtn.addEventListener('click', equals)
 
 function equals() {
-    // should we run the operate function here?
 
     // for loop to iterate over the value array
-for(let i = 0; i < values.length; i++) {
-    console.log(i)
-    }
+    // for(let i = 0; i < values.length; i++) {
 
+    // }
 }
 
-// add
-function add(a,b) {
-    return a + b
-}
-
-// subtract
-function subtract(a,b) {
-    return a - b
-}
-
-
-// multiply
-function multiply(a,b) {
-    return a * b
-}
-
-// divide
-function divide(a,b) {
-    return a / b
+// function to populate screen
+function populateScreen(e) {
+    console.log(e.target.value)
+    cur.append(e.target.value)
 }
 
 // operate function, used a switch statement to switch operators depending on the need
@@ -105,4 +92,25 @@ function operate(operator, a, b) {
         default:
             return null;
     }
+}
+
+// add
+function add(a,b) {
+    return a + b
+}
+
+// subtract
+function subtract(a,b) {
+    return a - b
+}
+
+
+// multiply
+function multiply(a,b) {
+    return a * b
+}
+
+// divide
+function divide(a,b) {
+    return a / b
 }
