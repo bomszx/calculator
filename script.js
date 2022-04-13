@@ -1,15 +1,15 @@
 // dom elements
-let prev = document.querySelector('#prevOp');
-let cur = document.querySelector('#curOp');
+let firstNo = document.querySelector('#firstNum');
+let secondNo = document.querySelector('#secondNum');
 let buttons = document.querySelectorAll('#button');
 let buttonOperator = document.querySelectorAll('#button-operator');
 let equalsBtn = document.querySelector('.equals')
 
 
 // variables
-let prevOp = [];
-let curOp = [];
-let operators = [];
+let firstOp = ' ';
+let secondOp = ' ';
+let operators = ' ';
 
 let input = document.querySelector('#prevOp')
 
@@ -21,24 +21,28 @@ let input = document.querySelector('#prevOp')
 // store input in an array, find out a way to iterate over said array and 'evaluate' each item
 
 // function to append the clicked button to our screen div
- buttons.forEach(function(button) {
-    button.addEventListener('click', function(e) {
-        // assigns the value to the btn
-        button.value = e.target.value;
-        prevOp.push(button.value)
+//  buttons.forEach(function(button) {
+//     button.addEventListener('click', function(e) {
+//         // assigns the value to the btn
+//         button.value = e.target.value;
+//         prevOp.push(button.value)
 
-        // gives us a string form of the input value, now we need to use the operate func on this value
-        prevOpValue = button.value;
-        console.log(prevOp);
+//         // gives us a string form of the input value, now we need to use the operate func on this value
+//         prevOpValue = button.value;
+//         console.log(prevOp);
 
-        // append to our screen
-        prev.append(prevOpValue)
-    })
+//         // append to our screen
+//         prev.append(prevOpValue)
+//     })
+// })
+
+buttons.forEach(function(button) {
+    button.addEventListener('click', screenFirstNo)
 })
 
 // operator buttons event listener
 buttonOperator.forEach(function(button) {
-    button.addEventListener('click', populateScreen);
+    button.addEventListener('click', screenOp);
 })
 
 // equalsBtn event listener
@@ -52,12 +56,31 @@ function equals() {
     // }
 }
 
-// function to populate screen
-function populateScreen(e) {
-    let a = e.target.value;
-    cur.append(a);
+// functions to populate screen
 
+function screenFirstNo(e) {
+    let a = e.target.value;
+    firstNo.append(a);
+    firstOp += a
+    console.log(firstOp)
     return a;
+}
+
+function screenSecondNo(e) {
+    let b = e.target.value;
+    secondNo.append(b);
+    secondOp += b
+    console.log(secondOp)
+    return b;
+}
+
+
+function screenOp(e) {
+    let operator = e.target.value;
+    firstNo.append(operator);
+    operators += operator
+    console.log(operators)
+    return operator;
 }
 
 // operate function, used a switch statement to switch operators depending on the need
