@@ -41,18 +41,6 @@ buttonOperator.forEach(function(button) {
     button.addEventListener('click', populateScreen);
 })
 
-// function(e) {
-//     button.value = e.target.value;
-
-//     // pushes the operator to the operator array
-//     operator = button.value;
-//     operators.push(operator)
-
-//     // append to our screen
-//     prev.append(e.target.value)
-//     return operator;
-// })
-
 // equalsBtn event listener
 equalsBtn.addEventListener('click', equals)
 
@@ -66,8 +54,10 @@ function equals() {
 
 // function to populate screen
 function populateScreen(e) {
-    console.log(e.target.value)
-    cur.append(e.target.value)
+    let a = e.target.value;
+    cur.append(a);
+
+    return a;
 }
 
 // operate function, used a switch statement to switch operators depending on the need
