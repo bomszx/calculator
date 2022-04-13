@@ -2,6 +2,7 @@
 let firstNo = document.querySelector('#firstNum');
 let secondNo = document.querySelector('#secondNum');
 let buttons = document.querySelectorAll('#button');
+let clearBtn = document.querySelector('#clearButton')
 let buttonOperator = document.querySelectorAll('#button-operator');
 let equalsBtn = document.querySelector('.equals')
 
@@ -20,6 +21,8 @@ let input = document.querySelector('#prevOp')
 
 // store input in an array, find out a way to iterate over said array and 'evaluate' each item
 
+// figure out how to save firstOp after clicking an operator
+
 // function to append the clicked button to our screen div
 //  buttons.forEach(function(button) {
 //     button.addEventListener('click', function(e) {
@@ -29,7 +32,7 @@ let input = document.querySelector('#prevOp')
 
 //         // gives us a string form of the input value, now we need to use the operate func on this value
 //         prevOpValue = button.value;
-//         console.log(prevOp);
+//         console.log(prevOp); 
 
 //         // append to our screen
 //         prev.append(prevOpValue)
@@ -37,7 +40,7 @@ let input = document.querySelector('#prevOp')
 // })
 
 buttons.forEach(function(button) {
-    button.addEventListener('click', screenFirstNo)
+    button.addEventListener('click', screenFirstNo, screenSecondNo)
 })
 
 // operator buttons event listener
@@ -48,12 +51,26 @@ buttonOperator.forEach(function(button) {
 // equalsBtn event listener
 equalsBtn.addEventListener('click', equals)
 
+clearBtn.addEventListener('click', clear)
+
+
+
 function equals() {
 
     // for loop to iterate over the value array
     // for(let i = 0; i < values.length; i++) {
 
     // }
+}
+
+// function to clear screen
+
+function clear() {
+    firstNo.innerText = '';
+    secondNo.innerText = '';
+    firstOp = '';
+    secondOp = '';
+    operators = '';
 }
 
 // functions to populate screen
