@@ -25,9 +25,9 @@ buttons.forEach(function(button) {
 })
 
 // operator buttons event listener
-// buttonOperator.forEach(function(button) {
-//     button.addEventListener('click',);
-// })
+buttonOperator.forEach(function(button) {
+    button.addEventListener('click', operatorClick);
+})
 
 // equalsBtn event listener
 equalsBtn.addEventListener('click', equals)
@@ -35,8 +35,12 @@ equalsBtn.addEventListener('click', equals)
 clearBtn.addEventListener('click', clear)
 
 function onDisplay(e) {
-    displayValue = e.target.value;
-    middleScreen.append(displayValue);
+    let num = e.target.value;  
+    middleScreen.append(num);
+} 
+
+function operatorClick() {
+    console.log(middleScreen.innerText)
 }
 
 function equals() {
@@ -50,8 +54,8 @@ function equals() {
 // function to clear screen
 
 function clear() {
-    firstScreen.innerText = '';
-    secondScreen.innerText = '';
+    topScreen.innerText = '';
+    middleScreen.innerText = '';
     firstNo = '';
     secondNo = '';
     operators = '';
