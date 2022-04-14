@@ -1,59 +1,43 @@
 // dom elements
-let firstNo = document.querySelector('#firstNum');
-let secondNo = document.querySelector('#secondNum');
+let topScreen = document.querySelector('#topScreen');
+let middleScreen = document.querySelector('#middleScreen');
 let buttons = document.querySelectorAll('#button');
 let clearBtn = document.querySelector('#clearButton')
 let buttonOperator = document.querySelectorAll('#button-operator');
 let equalsBtn = document.querySelector('.equals')
-
-
-// variables
-let firstOp = ' ';
-let secondOp = ' ';
-let operators = ' ';
-
 let input = document.querySelector('#prevOp')
 
+/*
+    1. input numbers on screen
+    2. save the numbers on the screen after an operator button has been pressed
+    3. operate on the values when 'equals' is pressed
+    4. update screen with 'solution' value
+*/ 
 
-// create the function that will append to the screen
-
-// pass the operator value, pass the a value then b value to the operate function?
-
-// store input in an array, find out a way to iterate over said array and 'evaluate' each item
-
-// figure out how to save firstOp after clicking an operator
-
-// function to append the clicked button to our screen div
-//  buttons.forEach(function(button) {
-//     button.addEventListener('click', function(e) {
-//         // assigns the value to the btn
-//         button.value = e.target.value;
-//         prevOp.push(button.value)
-
-//         // gives us a string form of the input value, now we need to use the operate func on this value
-//         prevOpValue = button.value;
-//         console.log(prevOp); 
-
-//         // append to our screen
-//         prev.append(prevOpValue)
-//     })
-// })
+// variables
+let displayValue;
+let firstNo;
+let secondNo;
+let operators;
 
 buttons.forEach(function(button) {
-    button.addEventListener('click', screenFirstNo, screenSecondNo)
+    button.addEventListener('click', onDisplay)
 })
 
 // operator buttons event listener
-buttonOperator.forEach(function(button) {
-    button.addEventListener('click', screenOp);
-})
+// buttonOperator.forEach(function(button) {
+//     button.addEventListener('click',);
+// })
 
 // equalsBtn event listener
 equalsBtn.addEventListener('click', equals)
 
 clearBtn.addEventListener('click', clear)
 
-
+function onDisplay(e) {
+    displayValue = e.target.value;
+    middleScreen.append(displayValue);
+}
 
 function equals() {
 
@@ -66,39 +50,15 @@ function equals() {
 // function to clear screen
 
 function clear() {
-    firstNo.innerText = '';
-    secondNo.innerText = '';
-    firstOp = '';
-    secondOp = '';
+    firstScreen.innerText = '';
+    secondScreen.innerText = '';
+    firstNo = '';
+    secondNo = '';
     operators = '';
 }
 
 // functions to populate screen
 
-function screenFirstNo(e) {
-    let a = e.target.value;
-    firstNo.append(a);
-    firstOp += a
-    console.log(firstOp)
-    return a;
-}
-
-function screenSecondNo(e) {
-    let b = e.target.value;
-    secondNo.append(b);
-    secondOp += b
-    console.log(secondOp)
-    return b;
-}
-
-
-function screenOp(e) {
-    let operator = e.target.value;
-    firstNo.append(operator);
-    operators += operator
-    console.log(operators)
-    return operator;
-}
 
 // operate function, used a switch statement to switch operators depending on the need
 function operate(operator, a, b) {
