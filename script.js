@@ -37,10 +37,24 @@ clearBtn.addEventListener('click', clear)
 function onDisplay(e) {
     let num = e.target.value;  
     middleScreen.append(num);
+
+    if(firstNo) {
+        // capture second value
+        secondNo = middleScreen.innerText
+    }
+    console.log(secondNo)
 } 
 
-function operatorClick() {
-    console.log(middleScreen.innerText)
+function operatorClick(e) {
+    // captured the onscreen value after clicking an operator butt
+    let opt = e.target.value
+    
+    firstNo = middleScreen.innerText;
+    middleScreen.innerText = '';
+
+    topScreen.append(firstNo)
+    topScreen.append(opt)
+ 
 }
 
 function equals() {
