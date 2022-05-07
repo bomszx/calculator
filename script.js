@@ -67,16 +67,38 @@ function operate(operator, a, b) {
     }
 }
 
+// Event listeners
 buttons.forEach(button => {
     button.addEventListener('click', populateDisplay)
 })
 
+
+buttonOperator.forEach(button => {
+    button.addEventListener('click', operatorClick)
+})
+
+
 // populateDisplay function
 function populateDisplay(e) {
-    firstNo = e.target.value;
-    topScreen.append(firstNo)
-    firstNo = topScreen.innerText;
-    console.log(firstNo)
+    if(!operator) {
+        firstNo = e.target.value;
+        topScreen.append(firstNo)
+        return firstNo
+    } else if(operator) {
+        secondNo = e.target.value;
+        topScreen.append(secondNo)
+        return secondNo
+    }
 } 
 
-// now we need to capture the operator
+
+// operator function
+function operatorClick(e) {
+    operator = e.target.value;
+    topScreen.append(operator)
+    console.log(operator)
+
+} 
+
+
+
