@@ -1,6 +1,6 @@
 // dom elements
 let topScreen = document.querySelector('#topScreen');
-let middleScreen = document.querySelector('#middleScreen');
+let solutionScreen = document.querySelector('#solution');
 let buttons = document.querySelectorAll('#button');
 let clearBtn = document.querySelector('#clearButton')
 let buttonOperator = document.querySelectorAll('#button-operator');
@@ -14,69 +14,34 @@ let input = document.querySelector('#prevOp')
     4. update screen with 'solution' value
 */ 
 
-// variables
-let displayValue;
-let firstNo;
+// Variables
+
+let firstNo = '';
 let secondNo;
-let operators;
+let operator;
 
-buttons.forEach(function(button) {
-    button.addEventListener('click', onDisplay)
-})
 
-// operator buttons event listener
-buttonOperator.forEach(function(button) {
-    button.addEventListener('click', operatorClick);
-})
+// Arithmetic Functions
 
-// equalsBtn event listener
-equalsBtn.addEventListener('click', equals)
-
-clearBtn.addEventListener('click', clear)
-
-function onDisplay(e) {
-    let num = e.target.value;  
-    middleScreen.append(num);
-
-    if(firstNo) {
-        // capture second value
-        secondNo = middleScreen.innerText
-    }
-    console.log(secondNo)
-} 
-
-function operatorClick(e) {
-    // captured the onscreen value after clicking an operator butt
-    let opt = e.target.value
-    
-    firstNo = middleScreen.innerText;
-    middleScreen.innerText = '';
-
-    topScreen.append(firstNo)
-    topScreen.append(opt)
- 
+// add
+function add(a,b) {
+    return a + b
 }
 
-function equals() {
-
-    // for loop to iterate over the value array
-    // for(let i = 0; i < values.length; i++) {
-
-    // }
+// subtract
+function subtract(a,b) {
+    return a - b
 }
 
-// function to clear screen
-
-function clear() {
-    topScreen.innerText = '';
-    middleScreen.innerText = '';
-    firstNo = '';
-    secondNo = '';
-    operators = '';
+// multiply
+function multiply(a,b) {
+    return a * b
 }
 
-// functions to populate screen
-
+// divide
+function divide(a,b) {
+    return a / b
+}
 
 // operate function, used a switch statement to switch operators depending on the need
 function operate(operator, a, b) {
@@ -102,23 +67,16 @@ function operate(operator, a, b) {
     }
 }
 
-// add
-function add(a,b) {
-    return a + b
-}
+buttons.forEach(button => {
+    button.addEventListener('click', populateDisplay)
+})
 
-// subtract
-function subtract(a,b) {
-    return a - b
-}
+// populateDisplay function
+function populateDisplay(e) {
+    firstNo = e.target.value;
+    topScreen.append(firstNo)
+    firstNo = topScreen.innerText;
+    console.log(firstNo)
+} 
 
-
-// multiply
-function multiply(a,b) {
-    return a * b
-}
-
-// divide
-function divide(a,b) {
-    return a / b
-}
+// now we need to capture the operator
