@@ -16,9 +16,9 @@ let input = document.querySelector('#prevOp')
 
 // Variables
 
-let firstNo = '';
+let firstNo;
 let secondNo;
-let operator;
+let operator = "";
 
 
 // Arithmetic Functions
@@ -80,23 +80,28 @@ buttonOperator.forEach(button => {
 
 // populateDisplay function
 function populateDisplay(e) {
-    if(!operator) {
+    if(operator == "") {
         firstNo = e.target.value;
         topScreen.append(firstNo)
-        return firstNo
+        firstNo = topScreen.innerText;
+
     } else if(operator) {
+
         secondNo = e.target.value;
         topScreen.append(secondNo)
-        return secondNo
+        secondNo = topScreen.innerText;
+        
     }
 } 
 
 
 // operator function
 function operatorClick(e) {
+    topScreen.innerText = '';
     operator = e.target.value;
     topScreen.append(operator)
-    console.log(operator)
+
+    console.log(operator);
 
 } 
 
