@@ -15,9 +15,10 @@ let input = document.querySelector('#prevOp')
 */ 
 
 // Variables
-
 let firstNo;
 let secondNo;
+let a;
+let b;
 let operator = "";
 
 
@@ -52,7 +53,7 @@ function operate(operator, a, b) {
         case '-':
             return subtract(a, b);
             break;
-        case 'x':
+        case '*':
             return multiply(a, b);
             break;
         case '/':
@@ -77,19 +78,28 @@ buttonOperator.forEach(button => {
     button.addEventListener('click', operatorClick)
 })
 
+//convert the values into int, then the logic should allow for a single pair of numbers to be evaluated first!
+
 
 // populateDisplay function
 function populateDisplay(e) {
+        let num;
     if(operator == "") {
         firstNo = e.target.value;
         topScreen.append(firstNo)
         firstNo = topScreen.innerText;
 
-    } else if(operator) {
+        a = parseInt(firstNo)
 
+
+
+    } else if(firstNo && operator) {
+        let numTwo;
         secondNo = e.target.value;
         topScreen.append(secondNo)
         secondNo = topScreen.innerText;
+
+        b = parseInt(secondNo)
         
     }
 } 
@@ -97,9 +107,9 @@ function populateDisplay(e) {
 
 // operator function
 function operatorClick(e) {
-    topScreen.innerText = '';
     operator = e.target.value;
     topScreen.append(operator)
+    topScreen.innerHTML = '';
 
     console.log(operator);
 
