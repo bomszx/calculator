@@ -4,7 +4,7 @@ let solutionScreen = document.querySelector('#solution');
 let buttons = document.querySelectorAll('#button');
 let clearBtn = document.querySelector('#clearButton')
 let buttonOperator = document.querySelectorAll('#button-operator');
-let equalsBtn = document.querySelector('.equals')
+let equalsBtn = document.querySelector('#button-equals')
 let input = document.querySelector('#prevOp')
 
 /*
@@ -46,6 +46,7 @@ function divide(a,b) {
 
 // operate function, used a switch statement to switch operators depending on the need
 function operate(operator, a, b) {
+
     switch(operator) {
         case '+':
             return add(a, b);
@@ -73,47 +74,52 @@ buttons.forEach(button => {
     button.addEventListener('click', populateDisplay)
 })
 
-
 buttonOperator.forEach(button => {
-    button.addEventListener('click', operatorClick)
+    button.addEventListener('click', clickOp)
 })
+
+equalsBtn.addEventListener('click', equals) 
+
 
 //convert the values into int, then the logic should allow for a single pair of numbers to be evaluated first!
 
+// we want a function/logic that would run the operate function everytime an operator is clicked
+
+/*
+    - click numpad for numbers
+    - numbers that will show on screen will be our first value if an operator btn is pressed after the numbers
+    - next numbers on screen after an op btn is pressed will be our second value
+    - after the second set of numbers, if an operator button is pressed it should evaluate that pair
+
+    if first no is ''?, we assign the no. on the screen as the first no when we pressed an operator, after pressing an op, we clear the screen in prep for the second no.
+
+    the next numbers on the screen will be evaluated based on the operator that has been pressed if we eigher press '=' or another operator key
+
+    find a way to get values without removing the numbers from the topScreen
+*/
 
 // populateDisplay function
 function populateDisplay(e) {
-        let num;
-    if(operator == "") {
-        firstNo = e.target.value;
-        topScreen.append(firstNo)
-        firstNo = topScreen.innerText;
 
-        a = parseInt(firstNo)
-
-
-
-    } else if(firstNo && operator) {
-        let numTwo;
-        secondNo = e.target.value;
-        topScreen.append(secondNo)
-        secondNo = topScreen.innerText;
-
-        b = parseInt(secondNo)
-        
+    if(!operator) {
+        let num = e.target.value;
+        topScreen.append(num);
+        a = parseInt(topScreen.innerText);
+        console.log(a)
+    } else {
+        let numTwo = e.target.value;
+        topScreen.append(numTwo);
+        b = parseInt(topScreen.innerText);
+        console.log(b)
     }
-} 
+}
 
-
-// operator function
-function operatorClick(e) {
+function clickOp(e) {
     operator = e.target.value;
     topScreen.append(operator)
-    topScreen.innerHTML = '';
+}
 
-    console.log(operator);
-
-} 
-
-
-
+function equals(e) {
+    console.log(e.target.value)
+    console.log(operate(operator,a,b))
+}
