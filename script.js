@@ -17,6 +17,7 @@ let input = document.querySelector('#prevOp')
 // Variables
 let firstNo;
 let secondNo;
+let thirdNo
 let a;
 let b;
 let operator = "";
@@ -71,7 +72,13 @@ function operate(operator, a, b) {
 
 // Event listeners
 buttons.forEach(button => {
-    button.addEventListener('click', populateDisplay)
+    button.addEventListener('click', function(e) {
+        if(!operator) {
+            displayOne(e)
+        }  else {
+            displayTwo(e)
+        }
+    })
 })
 
 buttonOperator.forEach(button => {
@@ -99,27 +106,42 @@ equalsBtn.addEventListener('click', equals)
 */
 
 // populateDisplay function
-function populateDisplay(e) {
+// function populateDisplay(e) {
+    
+//     if(!operator) {
+//         let num = e.target.value;
+//         topScreen.append(num);
+//         a = parseInt(topScreen.innerText);
+//         console.log(a)
+//     } else if(a) {
+//         let numTwo = e.target.value;
+//         topScreen.append(numTwo);
+//         b = parseInt(topScreen.innerText);
+//         console.log(b)
+//     }
+// }
 
-    if(!operator) {
-        let num = e.target.value;
-        topScreen.append(num);
-        a = parseInt(topScreen.innerText);
-        console.log(a)
-    } else {
-        let numTwo = e.target.value;
-        topScreen.append(numTwo);
-        b = parseInt(topScreen.innerText);
-        console.log(b)
-    }
+function displayOne(e) {
+    topScreen.append(e.target.value)
+    a = parseInt(topScreen.innerText);
 }
 
+function displayTwo(e) {
+    topScreen.append(e.target.value)
+    b = parseInt(topScreen.innerText);
+}
+
+// press an operator button
 function clickOp(e) {
     operator = e.target.value;
-    topScreen.append(operator)
+    topScreen.append(operator)   
+  
 }
 
+//  press equals button
 function equals(e) {
     console.log(e.target.value)
-    console.log(operate(operator,a,b))
+
+    thirdNo = operate(operator, a, b)
+    solutionScreen.append(thirdNo)
 }
