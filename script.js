@@ -62,17 +62,18 @@ function appendScreen(e) {
 
 function appendTopScreen() {
     let num = middle.textContent
-    tops.append(num)
+    firstOperand = num;
+    tops.innerText = `${firstOperand} ${operator}`
 }
 
 function setOperator(e) {
     operator = e.target.value;
-    appendTopScreen();
+    appendTopScreen(operator);
 }
 
 function evaluate() {
-    if(a && b && operator) {
-        console.log(operate(operator, a, b))
+    if(firstOperand && secondOperand && operator) {
+        console.log(operate(operator, firstOperand, secondOperand))
     }
 }
 
