@@ -54,21 +54,36 @@ operatorBtn.forEach(button => {
 
 equalsBtn.addEventListener('click', evaluate);
 
+function clearScreen() {
+    middle.innerText = '';
+}
+
 // append numbers to screen
 function appendScreen(e) {
-    let num = e.target.value;
-    middle.append(num);
+    console.log(e.target.value)
+    middle.append(e.target.value)
 }
 
 function appendTopScreen() {
-    let num = middle.textContent
-    firstOperand = num;
-    tops.innerText = `${firstOperand} ${operator}`
+    let num;
+
+    if(!firstOperand) {
+        num = middle.textContent
+        firstOperand = num;
+        console.log(firstOperand)
+        tops.innerText = `${firstOperand} ${operator}`
+    } else {
+        num = middle.textContent
+        secondOperand = num;
+        console.log(secondOperand)
+        tops.innerText = `${secondOperand} ${operator}`
+    }    
 }
 
 function setOperator(e) {
     operator = e.target.value;
     appendTopScreen(operator);
+    middle.innerText = '';
 }
 
 function evaluate() {
