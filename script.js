@@ -1,7 +1,7 @@
 let tops = document.querySelector('#top-screen');
 let middle = document.querySelector('#middle-screen');
-let a;
-let b;
+let firstOperand;
+let secondOperand;
 let c;
 let operator;
 
@@ -44,17 +44,43 @@ function divide(a, b) {
 }
 
 buttons.forEach(button => {
-    button.addEventListener('click', e => {
-        console.log(e.target.value)
+    button.addEventListener('click', appendScreen)
     })
-})
+
 
 operatorBtn.forEach(button => {
-    button.addEventListener('click', e => {
-        console.log(e.target.value)
-    })
+    button.addEventListener('click', setOperator)
 })
 
-equalsBtn.addEventListener('click', e => {
-    console.log(e.target.value)
-})
+equalsBtn.addEventListener('click', evaluate);
+
+// append numbers to screen
+function appendScreen(e) {
+    let num = e.target.value;
+    middle.append(num);
+}
+
+function appendTopScreen() {
+    let num = middle.textContent
+    tops.append(num)
+}
+
+function setOperator(e) {
+    operator = e.target.value;
+    appendTopScreen();
+}
+
+function evaluate() {
+    if(a && b && operator) {
+        console.log(operate(operator, a, b))
+    }
+}
+
+/*
+    - click a number
+    - when an operator is clicked
+    - send the number into top screen
+
+    - if the user presses '=' evaluate
+    - if the user presses another operator append number into top screen
+*/
