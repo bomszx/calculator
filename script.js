@@ -62,41 +62,29 @@ function clearScreen() {
 function appendScreen(e) {
     console.log(e.target.value)
     middle.append(e.target.value)
+
 }
 
 function appendTopScreen() {
     let num;
+    num = middle.innerText;
 
-    if(!firstOperand) {
-        num = middle.textContent
-        firstOperand = num;
-        console.log(firstOperand)
-        tops.innerText = `${firstOperand} ${operator}`
-    } else {
-        num = middle.textContent
-        secondOperand = num;
-        console.log(secondOperand)
-        tops.innerText = `${secondOperand} ${operator}`
-    }    
+    tops.append(`${num} ${operator}`);
 }
 
 function setOperator(e) {
     operator = e.target.value;
-    appendTopScreen(operator);
+    appendTopScreen();
+    firstOperand = middle.innerText;
     middle.innerText = '';
+
+    // if(!firstOperand)
+    
 }
 
 function evaluate() {
     if(firstOperand && secondOperand && operator) {
-        console.log(operate(operator, firstOperand, secondOperand))
+        middle.append((operate(operator, firstOperand, secondOperand)));
     }
 }
 
-/*
-    - click a number
-    - when an operator is clicked
-    - send the number into top screen
-
-    - if the user presses '=' evaluate
-    - if the user presses another operator append number into top screen
-*/
