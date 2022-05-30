@@ -43,6 +43,7 @@ function divide(a, b) {
     return a / b;
 }
 
+//Event Listeners
 buttons.forEach(button => {
     button.addEventListener('click', appendScreen)
     })
@@ -60,31 +61,53 @@ function clearScreen() {
 
 // append numbers to screen
 function appendScreen(e) {
-    console.log(e.target.value)
-    middle.append(e.target.value)
-
+    middle.innerText += e.target.value;
 }
 
-function appendTopScreen() {
-    let num;
-    num = middle.innerText;
-
-    tops.append(`${num} ${operator}`);
+function appendTops() {
+    tops.innerText = `${firstOperand} ${operator}`;
 }
 
 function setOperator(e) {
-    operator = e.target.value;
-    appendTopScreen();
-    firstOperand = middle.innerText;
-    middle.innerText = '';
-
-    // if(!firstOperand)
+    let num;
+    operator = e.target.value
+    num = middle.innerText;
+    firstOperand = num;
     
+    appendTops();
+    console.log(firstOperand);
+
+    /*
+        if operator is true, let num = secondOperand?
+    */
 }
 
 function evaluate() {
     if(firstOperand && secondOperand && operator) {
-        middle.append((operate(operator, firstOperand, secondOperand)));
+        console.log(operate(operator, firstOperand, secondOperand))
+    } else {
+        return;
     }
 }
 
+
+// function appendTopScreen() {
+//     let num;
+//     num = middle.innerText;
+//     firstOperand = num;
+
+// }
+
+// function clearMiddle() {
+//     middle.innerText = '';
+// }
+
+
+/*
+    1. enter number (firstOperand)
+    2. enter operator - save the firstOperand, save operator, clear middle screen
+    3. enter number (secondOperand)
+    4. 
+        a. if btn pressed is an operator, evaluate the first and second operand
+        b. if btn pressed is equals btn, evaluate
+*/
