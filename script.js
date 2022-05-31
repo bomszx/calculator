@@ -61,36 +61,34 @@ function clearScreen() {
 
 // append numbers to screen
 function appendScreen(e) {
-    middle.innerText += e.target.value;
+    middle.innerText += `${e.target.value}`;
 }
 
 function appendTops() {
     tops.innerText = `${firstOperand} ${operator}`;
+    clearScreen();
 }
 
 function setOperator(e) {
     let num;
-    operator = e.target.value
+    operator = e.target.value;
     num = middle.innerText;
-    firstOperand = num;
-    
-    appendTops();
-    console.log(firstOperand);
 
-    /*
-        if operator is true, let num = secondOperand?
-    */
-}
-
-function evaluate() {
-    if(firstOperand && secondOperand && operator) {
-        console.log(operate(operator, firstOperand, secondOperand))
-    } else {
-        return;
+    if(!firstOperand) {
+        firstOperand = Number(num);
+        appendTops()
+    } else if(firstOperand && operator != null) {
+        secondOperand = Number(num);
     }
 }
 
-
+function evaluate() {
+    let num;
+    num = middle.innerText;
+    secondOperand = Number(num);
+    clearScreen();
+    middle.innerText += `${(operate(operator, firstOperand, secondOperand))}`;
+}
 // function appendTopScreen() {
 //     let num;
 //     num = middle.innerText;
