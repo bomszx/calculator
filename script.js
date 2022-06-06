@@ -2,6 +2,7 @@ let tops = document.querySelector('#top-screen');
 let middle = document.querySelector('#middle-screen');
 let firstOperand;
 let secondOperand;
+let displayValue;
 let operator;
 
 const buttons = document.querySelectorAll('.number')
@@ -62,7 +63,6 @@ equalsBtn.addEventListener('click', evaluate);
 clearBtn.addEventListener('click', clearButton)
 
 // Functions
-
 function clearButton() {
     firstOperand = '';
     secondOperand = '';
@@ -76,47 +76,27 @@ function clearScreen() {
 
 // append numbers to screen
 function appendScreen(e) {
-    middle.append(e.target.value);    
+    middle.append(e.target.value);
 }
 
 function setOperator(e) {
+    let num;
     operator = e.target.value;
-    console.log(operator);
-    saveOperand();
+    num = middle.innerText;
+    firstOperand = Number(num);
     clearScreen();
+
+
 }
-
-/*
-    if
-
-*/
 
 function evaluate() {
-    saveSecondOp();
+    secondOperand = Number(middle.innerText);
     clearScreen();
-    middle.append(operate(operator, firstOperand, secondOperand));
+    displayValue = operate(operator,firstOperand,secondOperand);
 
+    middle.append(displayValue);
+    firstOperand = displayValue;
 }
 
 
-function saveOperand() {
-    if(firstOperand == undefined) {
-        num = middle.innerText;
-        firstOperand = Number(num);
-        console.log(num)
-    } else if(firstOperand && operator != null  && secondOperand) {
-        num = middle.innerText;
-        firstOperand = Number(num);
-    } else {
-        num = middle.innerText;
-        secondOperand = Number(num);
-        console.log(num)
-    }
-}
-
-function saveSecondOp () {
-    let num;
-    num = middle.innerText;
-    secondOperand = Number(num);
-}
 
