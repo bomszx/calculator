@@ -2,11 +2,11 @@ let tops = document.querySelector('#top-screen');
 let middle = document.querySelector('#middle-screen');
 let firstOperand;
 let secondOperand;
-let c;
 let operator;
 
-const buttons = document.querySelectorAll('#button')
-const operatorBtn = document.querySelectorAll('#button-operator')
+const buttons = document.querySelectorAll('.number')
+const operatorBtn = document.querySelectorAll('.operator')
+
 const equalsBtn = document.querySelector('#button-equals')
 const clearBtn = document.querySelector('#button-clear')
 const delBtn = document.querySelector('#button-delete')
@@ -43,17 +43,32 @@ function divide(a, b) {
     return a / b;
 }
 
-//Event Listeners
+// Event Listeners
 buttons.forEach(button => {
     button.addEventListener('click', appendScreen)
     })
 
+operatorBtn.forEach(operator => {
+    operator.addEventListener('click', setOperator);
+    })
 
-operatorBtn.forEach(button => {
-    button.addEventListener('click', setOperator)
-})
+
+// operatorBtn.forEach(button => {
+//     button.addEventListener('click', setOperator)
+// })
 
 equalsBtn.addEventListener('click', evaluate);
+
+clearBtn.addEventListener('click', clearButton)
+
+// Functions
+
+function clearButton() {
+    firstOperand = '';
+    secondOperand = '';
+    operator = null;
+    middle.innerText = '';
+}
 
 function clearScreen() {
     middle.innerText = '';
@@ -61,51 +76,47 @@ function clearScreen() {
 
 // append numbers to screen
 function appendScreen(e) {
-    middle.innerText += `${e.target.value}`;
-}
-
-function appendTops() {
-    tops.innerText = `${firstOperand} ${operator}`;
-    clearScreen();
+    middle.append(e.target.value);    
 }
 
 function setOperator(e) {
-    let num;
     operator = e.target.value;
-    num = middle.innerText;
+    console.log(operator);
+    saveOperand();
+    clearScreen();
+}
 
-    if(!firstOperand) {
+/*
+    if
+
+*/
+
+function evaluate() {
+    saveSecondOp();
+    clearScreen();
+    middle.append(operate(operator, firstOperand, secondOperand));
+
+}
+
+
+function saveOperand() {
+    if(firstOperand == undefined) {
+        num = middle.innerText;
         firstOperand = Number(num);
-        appendTops()
-    } else if(firstOperand && operator != null) {
+        console.log(num)
+    } else if(firstOperand && operator != null  && secondOperand) {
+        num = middle.innerText;
+        firstOperand = Number(num);
+    } else {
+        num = middle.innerText;
         secondOperand = Number(num);
+        console.log(num)
     }
 }
 
-function evaluate() {
+function saveSecondOp () {
     let num;
     num = middle.innerText;
     secondOperand = Number(num);
-    clearScreen();
-    middle.innerText += `${(operate(operator, firstOperand, secondOperand))}`;
 }
-// function appendTopScreen() {
-//     let num;
-//     num = middle.innerText;
-//     firstOperand = num;
 
-// }
-
-// function clearMiddle() {
-//     middle.innerText = '';
-// }
-
-
-/*
-    1. enter number (firstOperand)
-    2. enter operator - save the firstOperand, save operator, clear middle screen
-    3. enter number (secondOperand)
-    4. 
-        a. if btn pressed is an operator, evaluate the first and second operand
-        b. if btn pressed is equals btn, evaluate
-*/
