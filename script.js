@@ -1,9 +1,11 @@
 let tops = document.querySelector('#top-screen');
 let middle = document.querySelector('#middle-screen');
-let firstOperand;
-let secondOperand;
+let firstOp;
+let secondOp;
+let result;
 let displayValue;
 let operator;
+
 
 const buttons = document.querySelectorAll('.number')
 const operatorBtn = document.querySelectorAll('.operator')
@@ -64,8 +66,8 @@ clearBtn.addEventListener('click', clearButton)
 
 // Functions
 function clearButton() {
-    firstOperand = '';
-    secondOperand = '';
+    firstOp = '';
+    secondOp = '';
     operator = null;
     middle.innerText = '';
 }
@@ -74,29 +76,47 @@ function clearScreen() {
     middle.innerText = '';
 }
 
+/*
+    4. Create the functions that populate the display when you click the number buttons… you should be storing the ‘display value’ in a variable somewhere for use in the next step.
+
+    5. Make the calculator work! You’ll need to store the first number that is input into the calculator when a user presses an operator, and also save which operation has been chosen and then operate() on them when the user presses the “=” key.
+
+    a. press numbers
+    b. press operator (save numbers for a)
+    c. press numbers
+    d. press operator(evaluate) or press equals (evaluate) either way will save the number for (b)
+
+    */
+
 // append numbers to screen
 function appendScreen(e) {
     middle.append(e.target.value);
+    displayValue = Number(middle.innerText);
+
+    firstOp = displayValue;
+    console.log(firstOp);
+}
+
+function appendTop() {
+    tops.append(displayValue);
 }
 
 function setOperator(e) {
-    let num;
-    operator = e.target.value;
-    num = middle.innerText;
-    firstOperand = Number(num);
-    clearScreen();
+    operator = e.target.value
+    displayValue = Number(middle.innerText);
 
+    secondOp = displayValue;
+    console.log(secondOp)
 
 }
 
 function evaluate() {
-    secondOperand = Number(middle.innerText);
-    clearScreen();
-    displayValue = operate(operator,firstOperand,secondOperand);
-
-    middle.append(displayValue);
-    firstOperand = displayValue;
+    result = operate(operator, firstOp, secondOp);
+    console.log(result);
 }
+
+
+
 
 
 
