@@ -1,15 +1,14 @@
-let tops = document.querySelector('#top-screen');
-let middle = document.querySelector('#middle-screen');
-let firstOp;
-let secondOp;
-let result;
-let displayValue;
+let opScreen = document.querySelector('#opScreen');
+let solution = document.querySelector('#solution-screen');
+let firstOp = '';
+let secondOp = '';
+let result = '';
+let storedOp = '';
 let operator;
-
+let waitingSecondOp = true;
 
 const buttons = document.querySelectorAll('.number')
 const operatorBtn = document.querySelectorAll('.operator')
-
 const equalsBtn = document.querySelector('#button-equals')
 const clearBtn = document.querySelector('#button-clear')
 const delBtn = document.querySelector('#button-delete')
@@ -69,11 +68,12 @@ function clearButton() {
     firstOp = '';
     secondOp = '';
     operator = null;
-    middle.innerText = '';
+    opScreen = '';
+    solution.innerText = '';
 }
 
 function clearScreen() {
-    middle.innerText = '';
+    opScreen.innerText = '';
 }
 
 /*
@@ -82,41 +82,51 @@ function clearScreen() {
     5. Make the calculator work! You’ll need to store the first number that is input into the calculator when a user presses an operator, and also save which operation has been chosen and then operate() on them when the user presses the “=” key.
 
     a. press numbers
-    b. press operator (save numbers for a)
-    c. press numbers
-    d. press operator(evaluate) or press equals (evaluate) either way will save the number for (b)
+        - save number(firstOp)
 
+    b. press operator to save number
+        - save operator clicked
+        - clearScreen()
+        - number input on screen will be saved (secondOp)
+
+    c. press numbers
+        - evaluate
+        - number on solution should be first/secondOp?
     */
+
+opScreen.innerText = '';
+solution.innerText = '';
 
 // append numbers to screen
 function appendScreen(e) {
-    middle.append(e.target.value);
-    displayValue = Number(middle.innerText);
-
-    firstOp = displayValue;
-    console.log(firstOp);
-}
-
-function appendTop() {
-    tops.append(displayValue);
+    opScreen.innerText += e.target.value //middle screen
+    storedOp = opScreen.innerText;
+    secondOp = storedOp;
+    console.log(firstOp + ' ' + ' I\'m firstOp')
+    if(firstOp && secondOp) {
+        evaluate();
+    }
 }
 
 function setOperator(e) {
-    operator = e.target.value
-    displayValue = Number(middle.innerText);
-
-    secondOp = displayValue;
-    console.log(secondOp)
-
+    // waitingSecondOp = true;
+    operator = e.target.value;
+    console.log(operator);
+    clearScreen();
+    firstOp = storedOp;
+    console.log(secondOp + ' ' + 'I\'m secondOp')
 }
 
 function evaluate() {
-    result = operate(operator, firstOp, secondOp);
-    console.log(result);
+
+    if(result != undefined) {
+        result = operate(operator, parseInt(firstOp), parseInt(secondOp))
+        console.log(result + ' ' + 'I\'m the result')
+        solution.innerText = result;
+        storedOp = result;
+    } else {
+        result = operate(operator, parseInt(firstOp), parseInt(secondOp))
+        console.log(result + ' ' + 'I\'m the result')
+        solution.innerText = result;
+    }
 }
-
-
-
-
-
-
