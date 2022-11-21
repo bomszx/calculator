@@ -92,9 +92,10 @@ function saveSecondOp() {
 
 function evaluate() {
     saveSecondOp()
-    a = parseInt(firstOp);
-    b = parseInt(secondOp)
-    console.log(operate(operator, a, b))
+    a = parseFloat(firstOp);
+    b = parseFloat(secondOp);
+    result = operate(operator, a, b)
+    console.log(result);
 }
 
 
