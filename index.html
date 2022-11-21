@@ -8,35 +8,45 @@
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>git 
-    <h1>I will add CSS a bit later :)</h1>
+<body>
     <div class="container">
-        <div class="screen">
-            <div class="opScreen"id="opScreen"></div>
-            <div class="solution" id="solution-screen"></div>
+        <div class="calculator">
+            <div class="screen">
+                <div class="history" id="history"></div>
+                <div class="opScreen"id="opScreen"></div>
+                <div class="solution" id="solution-screen"></div>
+            </div>
+            <div class="button-container">
+                <div class="top">
+                    <button id="button-clear" class="fn button ">CLR</button>
+                    <button id="button-delete" class="fn button">DLT</button>
+                </div>
+                <div class="bottom-container">
+                    <div class="bottom left">
+                        <button id="number" class="number button" value="7">7</button>
+                        <button id="number" class="number button" value="8">8</button>
+                        <button id="number" class="number button" value="9">9</button>
+                        <button id="number" class="number button" value="4">4</button>
+                        <button id="number" class="number button" value="5">5</button>
+                        <button id="number" class="number button" value="6">6</button>
+                        <button id="number" class="number button" value="1">1</button>
+                        <button id="number" class="number button" value="2">2</button>
+                        <button id="number" class="number button" value="3">3</button>
+                        <button id="number" class="number button" value="0">0</button>
+                        <button id="number" class="sign button" value="-">+/-</button>
+                        <button id="number" class="decimal button" value=".">.</button>
+                    </div>
+    
+                    <div class="operators">
+                        <button class="operator button" id="add" value="+">+</button>
+                        <button class="operator button" id="subtract" value="-">-</button>
+                        <button class="operator button" id="multiply" value="*">x</button>
+                        <button class="operator button" id="divide" value="/">/</button>
+                        <button class="operator button" id="equals" value="=">=</button>
+                    </div>
+                </div>
+            </div>    
         </div>
-        <br>
-        <div class="button-container">
-            <button id="button-clear">clear</button>
-            <button id="button-delete">delete</button>
-
-            <button id="button" class="number" value="1">1</button>
-            <button id="button" class="number" value="2">2</button>
-            <button id="button" class="number" value="3">3</button>
-            <button id="button" class="number" value="4">4</button>
-            <button id="button" class="number" value="5">5</button>
-            <button id="button" class="number" value="6">6</button>
-            <button id="button" class="number" value="7">7</button>
-            <button id="button" class="number" value="8">8</button>
-            <button id="button" class="number" value="9">9</button>
-            <button id="button" class="number" value="0">0</button>
-
-            <button class="operator" id="button" value="+">+</button>
-            <button class="operator" id="button" value="-">-</button>
-            <button class="operator" id="multiplication" value="*">x</button>
-            <button class="operator" id="button" value="/">/</button>
-            <button id="button-equals" value="=">=</button>
-        </div>        
     </div>
 </body>
 </html>
