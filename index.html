@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Awesome Calculator</title> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,37 +15,36 @@
     <div class="container">
         <div class="calculator">
             <div class="screen">
-                <div class="history" id="history"></div>
-                <div class="opScreen"id="opScreen"></div>
-                <div class="solution" id="solution-screen"></div>
+                <div data-previous-operand class="previous-operand"></div>
+                <div data-current-operand class="current-operand"></div>
             </div>
             <div class="button-container">
                 <div class="top">
-                    <button id="button-clear" class="fn button ">CLR</button>
-                    <button id="button-delete" class="fn button">DLT</button>
+                    <button id="button-clear" class="fn button ">AC</button>
+                    <button id="button-delete" class="fn button">DEL</button>
                 </div>
                 <div class="bottom-container">
                     <div class="bottom left">
-                        <button id="number" class="number button" value="7">7</button>
-                        <button id="number" class="number button" value="8">8</button>
-                        <button id="number" class="number button" value="9">9</button>
-                        <button id="number" class="number button" value="4">4</button>
-                        <button id="number" class="number button" value="5">5</button>
-                        <button id="number" class="number button" value="6">6</button>
-                        <button id="number" class="number button" value="1">1</button>
-                        <button id="number" class="number button" value="2">2</button>
-                        <button id="number" class="number button" value="3">3</button>
-                        <button id="number" class="number button" value="0">0</button>
-                        <button id="number" class="sign button" value="-">+/-</button>
-                        <button id="number" class="number button" value=".">.</button>
+                        <button data-number>7</button>
+                        <button data-number>8</button>
+                        <button data-number>9</button>
+                        <button data-number>4</button>
+                        <button data-number>5</button>
+                        <button data-number>6</button>
+                        <button data-number>1</button>
+                        <button data-number>2</button>
+                        <button data-number>3</button>
+                        <button data-number>0</button>
+                        <button data-number>-</button>
+                        <button data-number>.</button>
                     </div>
     
                     <div class="operators">
-                        <button class="operator button" id="add" value="+">+</button>
-                        <button class="operator button" id="subtract" value="-">-</button>
-                        <button class="operator button" id="multiply" value="*">x</button>
-                        <button class="operator button" id="divide" value="/">/</button>
-                        <button class="operator button" id="equals" value="=">=</button>
+                        <button data-operator>+</button>
+                        <button data-operator>-</button>
+                        <button data-operator>x</button>
+                        <button data-operator>/</button>
+                        <button data-equals>=</button>
                     </div>
                 </div>
             </div>    

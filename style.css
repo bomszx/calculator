@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
 }
 
 .container {
@@ -22,9 +24,25 @@
 }
 
 .screen {
+    display: flex;
+    flex-direction: column;
     height: 70px;
     width: auto;
     border: 1px solid black;
+    background-color: white;
+    color: black;
+    align-items: flex-end;
+    padding: .3rem;
+
+}
+
+.current-operand {
+    font-size: 1.5rem;
+    margin-top: .5rem;
+}
+
+.previous-operand {
+    font-size: 1.1rem;
 }
 
 .top {
@@ -45,29 +63,10 @@
 .bottom-container {
     display: flex;
     gap: 1px;
+}
 
+button {
+    height: 50px;
+    width: 50px;
 }
  
-.button {
-    width: 50px;
-    margin-top: .2rem;
-}
-
-.number, .sign, .decimal {
-    height: 70px;
-    width: 60px;
-}
-
-
-.operators {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.operator {
-    height: 55.5px;
-    width: 70px;
-}

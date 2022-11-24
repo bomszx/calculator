@@ -1,109 +1,70 @@
-let opScreen = document.querySelector('#opScreen');
-let solution = document.querySelector('#solution-screen');
-let history = document.querySelector('#history');
-let firstOp = '';
-let secondOp = '';
-let result = '';
-let storedOp = '';
-let historyVar = '';
-let operator;
-let waitingSecondOp = true;
+let prevOperandTextEl = document.querySelector('[data-previous-operand]');
+let currOperandTexEl = document.querySelector('[data-current-operand]');
+let operator = '';
+let currentOperand = '';
+let prevOperand = '';
 
-const numbers = document.querySelectorAll('.number')
-const operators = document.querySelectorAll('.operator')
-const equalsBtn = document.querySelector('#equals')
-const clearBtn = document.querySelector('#button-clear')
-const delBtn = document.querySelector('#button-delete')
-const sign = document.querySelector('.sign');
-const decimal = document.querySelector('.decimal')
-
-function operate(operator, a, b) {
-    switch(operator) {
-        case '+':
-            return add(a, b);
-        case '-':
-            return subtract(a, b);
-        case '*':
-            return multiply(a, b);
-        case '/':
-            if(b === 0) {
-                solution.innerText = 'Null'
-                // return null
-            } else {
-                return divide(a, b)
-            }
-        default:
-            return null;
-    }
-}
+const numberButtons = document.querySelectorAll('[data-number]');
+const operationButtons = document.querySelectorAll('[data-operator]');
+const equalsButton = document.querySelector('[data-equals]')
+const clearButton = document.querySelector('#button-clear');
 
 function add(a, b) {
     return a + b;
 }
+
 function subtract(a, b) {
     return a - b;
 }
+
 function multiply(a, b) {
     return a * b;
 }
+
 function divide(a, b) {
     return a / b;
 }
 
-/*
-enter numbers on screen
-when operator is pressed save the numbers currently on screen
-clear screen
-numbers entered will be second operand
-if button pressed is operator, evaluate
-*/
-
-function popHistory() {
-    history.innerText = `${firstOp} ${operator} ${secondOp}`
-}
-
-function appendScreen(e) {
-    opScreen.innerText += e.target.value;
-}
-
-function saveOperator(e) {
-    operator = e.target.value    
-    console.log(operator)
-    if(!firstOp) {
-        saveFirstOp();
-    } else {
-        saveSecondOp();
+function operate(operator, previousOperand, currentOperand) {
+    switch(operator) {
+        case '+':
+            return add(previousOperand, currentOperand)
+            break;
+        case '-':
+            return subtract(previousOperand, currentOperand) 
+            break;
+        case '*':
+            return multiply(previousOperand, currentOperand)
+            break;
+        case '/':
+            return divide(previousOperand, currentOperand)
+            break;
+        default:
+            return;
     }
-    return operator
 }
 
-function saveFirstOp() {
-    firstOp = opScreen.innerText;
-    console.log(firstOp, "first op");
-    opScreen.innerText = '';
-    return firstOp;
+numberButtons.forEach(button => button.addEventListener('click', () => {
+    appendNumber(button.innerText)
+    updateDisplay();
+}));
+
+operationButtons.forEach(button => button.addEventListener('click', () => {
+    setOperator(button.innerText)
+    updateDisplay();
+}));
+
+function appendNumber(number) {
+    currentOperand = currentOperand.toString() + number.toString();
 }
 
-function saveSecondOp() {
-    secondOp = opScreen.innerText;
-    console.log(secondOp, "second op")
-    return secondOp;
+function updateDisplay() {
+    currOperandTexEl.innerText = currentOperand;
 }
 
-function evaluate() {
-    saveSecondOp()
-    a = parseFloat(firstOp);
-    b = parseFloat(secondOp);
-    result = operate(operator, a, b)
-    console.log(result);
+function setOperator(operator) {
+    console.log(operator)
 }
-
-
-equalsBtn.addEventListener('click', evaluate)
-
-numbers.forEach(button => button.addEventListener('click', appendScreen));
-
-operators.forEach(button => button.addEventListener('click', saveOperator))
 
 /*
 // Event Listeners
@@ -156,7 +117,6 @@ function appendScreen(e) {
 
 function setOperator(e) {
     // waitingSecondOp = true;
-    historyVar += e.target.value
     operator = e.target.value;
     clearScreen();
     firstOp = storedOp;
