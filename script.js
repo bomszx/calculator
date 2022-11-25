@@ -1,13 +1,4 @@
-let prevOperandTextEl = document.querySelector('[data-previous-operand]');
-let currOperandTexEl = document.querySelector('[data-current-operand]');
-let operator = '';
-let currentOperand = '';
-let prevOperand = '';
 
-const numberButtons = document.querySelectorAll('[data-number]');
-const operationButtons = document.querySelectorAll('[data-operator]');
-const equalsButton = document.querySelector('[data-equals]')
-const clearButton = document.querySelector('#button-clear');
 
 function add(a, b) {
     return a + b;
@@ -44,27 +35,59 @@ function operate(operator, previousOperand, currentOperand) {
     }
 }
 
+// variables
+let prevOperandTextEl = document.querySelector('[data-previous-operand]');
+let currOperandTexEl = document.querySelector('[data-current-operand]');
+let operation = '';
+let currentOperand = '';
+let prevOperand = '';
+
+const numberButtons = document.querySelectorAll('[data-number]');
+const operationButtons = document.querySelectorAll('[data-operator]');
+const equalsButton = document.querySelector('[data-equals]')
+const clearButton = document.querySelector('#button-clear');
+
+// event listeners for clicks on number btns - appendNum appends/joins the values of the buttons
 numberButtons.forEach(button => button.addEventListener('click', () => {
     appendNumber(button.innerText)
-    updateDisplay();
+    updateDisplay()
 }));
 
+// event listeners for clicks on orperator btns - setOp sets the operator to the buttons innerText value
 operationButtons.forEach(button => button.addEventListener('click', () => {
     setOperator(button.innerText)
-    updateDisplay();
+    updateDisplay()
 }));
 
+// this function joins the number strings so we can pass it to our fn that displays to our screen
 function appendNumber(number) {
-    currentOperand = currentOperand.toString() + number.toString();
+    currentOperand = currentOperand + number
+    console.log(currentOperand)
 }
 
+//this sets our textElement into the current operand, we can use template string later to display the operand and the operator
 function updateDisplay() {
-    currOperandTexEl.innerText = currentOperand;
+    prevOperandTextEl.innerText = `${currentOperand} ${operation} `
 }
+
 
 function setOperator(operator) {
-    console.log(operator)
+    operation = operator;
+    console.log(operation)
 }
+
+/*
+    1. we type the number on our currentOperand screen
+        - it has to be a number otherwise it should not work
+        -
+    2. once we press an operator, the number currently on the screen will become our prevOperand
+    3. we type the numbers on our screen for the next operand then..
+        - if an operator is pressed, we should save the numbers on the screen, then compute
+        - if equals is pressed, our screen should display the solution
+    4. 
+    
+
+*/
 
 /*
 // Event Listeners
