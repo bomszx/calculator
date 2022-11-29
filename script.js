@@ -52,6 +52,11 @@ numberButtons.forEach((button) => button.addEventListener('click', () => {
     updateDisplay()
 }))
 
+equalsButton.addEventListener('click', () => {
+    evaluate();
+    updateDisplay();
+})
+
 operationButtons.forEach((operation) => operation.addEventListener('click', () => {
     setOperator(operation.innerText)
 }))
@@ -61,13 +66,23 @@ function appendNumber(number) {
 }
 
 function updateDisplay() {
-    currOperandTexEl.innerText = currentOperand ;
+    currOperandTexEl.innerText = currentOperand;
 }
 
 function setOperator(operation) {
     operator = operation;
     console.log(operator)
     if(operator === '') return
+    if(prevOperand !== '') {
+        evaluate();
+    }
     prevOperand = currentOperand;
     currentOperand = '';
+}
+
+function evaluate() {
+    let curr = parseFloat(currentOperand);
+    let prev = parseFloat(prevOperand);
+    currentOperand = operate(operator, prev, curr)
+    return;
 }
