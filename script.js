@@ -24,7 +24,7 @@ function operate(operator, previousOperand, currentOperand) {
         case '-':
             return subtract(previousOperand, currentOperand) 
             break;
-        case '*':
+        case 'x':
             return multiply(previousOperand, currentOperand)
             break;
         case '/':
@@ -38,7 +38,7 @@ function operate(operator, previousOperand, currentOperand) {
 // variables
 let prevOperandTextEl = document.querySelector('[data-previous-operand]');
 let currOperandTexEl = document.querySelector('[data-current-operand]');
-let operation = '';
+let operator = '';
 let currentOperand = '';
 let prevOperand = '';
 
@@ -47,126 +47,27 @@ const operationButtons = document.querySelectorAll('[data-operator]');
 const equalsButton = document.querySelector('[data-equals]')
 const clearButton = document.querySelector('#button-clear');
 
-// event listeners for clicks on number btns - appendNum appends/joins the values of the buttons
-numberButtons.forEach(button => button.addEventListener('click', () => {
+numberButtons.forEach((button) => button.addEventListener('click', () => {
     appendNumber(button.innerText)
-    updateDisplay(currentOperand)
-}));
+    updateDisplay()
+}))
 
-// event listeners for clicks on orperator btns - setOp sets the operator to the buttons innerText value
-operationButtons.forEach(button => button.addEventListener('click', () => {
-    setOperator(button.innerText)
-}));
+operationButtons.forEach((operation) => operation.addEventListener('click', () => {
+    setOperator(operation.innerText)
+}))
 
-equalsButton.addEventListener('click', () => {
-    evaluate()
-})
-
-// this function joins the number strings so we can pass it to our fn that displays to our screen
 function appendNumber(number) {
-    currentOperand = currentOperand + number
-    console.log(currentOperand)
+    currentOperand = currentOperand.toString() + number.toString();
 }
 
-// this updates our currentOpTextEl to whatever is passed to it
-function updateDisplay(a) {
-    currOperandTexEl.innerText = a;
+function updateDisplay() {
+    currOperandTexEl.innerText = currentOperand ;
 }
 
-// sets the operator to be used depending on the clicked button, this should also save the value on the screen to our prevOperand once pressed
-function setOperator(operator) {
-    operation = operator;
+function setOperator(operation) {
+    operator = operation;
+    console.log(operator)
+    if(operator === '') return
     prevOperand = currentOperand;
-    prevOperandTextEl.innerText = `${prevOperand} ${operation}`;
     currentOperand = '';
-    updateDisplay('')
 }
-
-function evaluate() {
-    let current = parseFloat(currentOperand);
-    let prev = parseFloat(prevOperand);
-    let solution = operate(operation, current, prev)
-
-    console.log(solution)
-}
-
-/*
-    1. we type the number on our currentOperand screen
-        - it has to be a number otherwise it should not work
-        -
-    2. once we press an operator, the number currently on the screen will become our prevOperand
-    3. we type the numbers on our screen for the next operand then..
-        - if an operator is pressed, we should save the numbers on the screen, then compute
-        - if equals is pressed, our screen should display the solution
-    4. 
-*/
-
-/*
-// Event Listeners
-buttons.forEach(button => {
-    button.addEventListener('click', appendScreen)
-    })
-
-operatorBtn.forEach(operator => {
-    operator.addEventListener('click', setOperator);
-    })
-
-
-// operatorBtn.forEach(button => {
-//     button.addEventListener('click', setOperator)
-// })
-
-equalsBtn.addEventListener('click', evaluate);
-
-clearBtn.addEventListener('click', clearButton)
-
-// Functions
-function clearButton() {
-    firstOp = '';
-    secondOp = '';
-    operator = null;
-    history.innerText = '';
-    opScreen.innerText = '';
-    solution.innerText = '';
-}
-
-function clearScreen() {
-    opScreen.innerText = '';
-}
-
-opScreen.innerText = '';
-solution.innerText = '';
-
-// append numbers to screen
-function appendScreen(e) {
-    historyVar += e.target.value
-    console.log(historyVar)
-    opScreen.innerText += e.target.value //middle screen
-    storedOp = opScreen.innerText;
-    secondOp = storedOp;
-    console.log(firstOp + ' ' + ' I\'m firstOp')
-    if(firstOp && secondOp) {
-        evaluate();
-    }
-}
-
-function setOperator(e) {
-    // waitingSecondOp = true;
-    operator = e.target.value;
-    clearScreen();
-    firstOp = storedOp;
-}
-
-function evaluate() {
-    if(result != undefined) {
-        result = operate(operator, parseInt(firstOp), parseInt(secondOp))
-        console.log(result + ' ' + 'I\'m the result')
-        solution.innerText = result;
-        storedOp = result;
-    } else {
-        result = operate(operator, parseInt(firstOp), parseInt(secondOp))
-        console.log(result + ' ' + 'I\'m the result')
-        solution.innerText = result;
-    }
-}
-*/
