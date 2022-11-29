@@ -1,45 +1,32 @@
 
-
-function add(a, b) {
-    return a + b;
-}
-
-function subtract(a, b) {
-    return a - b;
-}
-
-function multiply(a, b) {
-    return a * b;
-}
-
-function divide(a, b) {
-    return a / b;
-}
-
 function operate(operator, previousOperand, currentOperand) {
+    let solution;
+    let prev = parseFloat(previousOperand)
+    let curr = parseFloat(currentOperand)
     switch(operator) {
         case '+':
-            return add(previousOperand, currentOperand)
+            solution = prev + curr;
             break;
         case '-':
-            return subtract(previousOperand, currentOperand) 
+            solution = prev - curr;
             break;
         case 'x':
-            return multiply(previousOperand, currentOperand)
+            solution = prev * curr;
             break;
         case '/':
-            return divide(previousOperand, currentOperand)
+            solution = prev / curr;
             break;
         default:
-            return;
+            return; 
     }
+    currOperand = solution;
 }
 
 // variables
 let prevOperandTextEl = document.querySelector('[data-previous-operand]');
 let currOperandTexEl = document.querySelector('[data-current-operand]');
 let operator = '';
-let currentOperand = '';
+let currOperand = '';
 let prevOperand = '';
 
 const numberButtons = document.querySelectorAll('[data-number]');
@@ -53,7 +40,7 @@ numberButtons.forEach((button) => button.addEventListener('click', () => {
 }))
 
 equalsButton.addEventListener('click', () => {
-    evaluate();
+    operate(operator, prevOperand, currOperand);
     updateDisplay();
 })
 
@@ -62,27 +49,17 @@ operationButtons.forEach((operation) => operation.addEventListener('click', () =
 }))
 
 function appendNumber(number) {
-    currentOperand = currentOperand.toString() + number.toString();
+    currOperand = currOperand.toString() + number.toString();
 }
 
 function updateDisplay() {
-    currOperandTexEl.innerText = currentOperand;
+    currOperandTexEl.innerText = currOperand;
 }
 
 function setOperator(operation) {
     operator = operation;
-    console.log(operator)
-    if(operator === '') return
-    if(prevOperand !== '') {
-        evaluate();
-    }
-    prevOperand = currentOperand;
-    currentOperand = '';
+    prevOperand = currOperand
+    currOperand = '';
+    console.log(operator, prevOperand)
 }
 
-function evaluate() {
-    let curr = parseFloat(currentOperand);
-    let prev = parseFloat(prevOperand);
-    currentOperand = operate(operator, prev, curr)
-    return;
-}
