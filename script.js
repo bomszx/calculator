@@ -58,6 +58,10 @@ operationButtons.forEach(button => button.addEventListener('click', () => {
     setOperator(button.innerText)
 }));
 
+equalsButton.addEventListener('click', () => {
+    evaluate()
+})
+
 // this function joins the number strings so we can pass it to our fn that displays to our screen
 function appendNumber(number) {
     currentOperand = currentOperand + number
@@ -73,9 +77,17 @@ function updateDisplay(a) {
 function setOperator(operator) {
     operation = operator;
     prevOperand = currentOperand;
-    prevOperandTextEl.innerText = prevOperand;
+    prevOperandTextEl.innerText = `${prevOperand} ${operation}`;
     currentOperand = '';
     updateDisplay('')
+}
+
+function evaluate() {
+    let current = parseFloat(currentOperand);
+    let prev = parseFloat(prevOperand);
+    let solution = operate(operation, current, prev)
+
+    console.log(solution)
 }
 
 /*
