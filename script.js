@@ -50,13 +50,12 @@ const clearButton = document.querySelector('#button-clear');
 // event listeners for clicks on number btns - appendNum appends/joins the values of the buttons
 numberButtons.forEach(button => button.addEventListener('click', () => {
     appendNumber(button.innerText)
-    updateDisplay()
+    updateDisplay(currentOperand)
 }));
 
 // event listeners for clicks on orperator btns - setOp sets the operator to the buttons innerText value
 operationButtons.forEach(button => button.addEventListener('click', () => {
     setOperator(button.innerText)
-    updateDisplay()
 }));
 
 // this function joins the number strings so we can pass it to our fn that displays to our screen
@@ -65,15 +64,18 @@ function appendNumber(number) {
     console.log(currentOperand)
 }
 
-//this sets our textElement into the current operand, we can use template string later to display the operand and the operator
-function updateDisplay() {
-    prevOperandTextEl.innerText = `${currentOperand} ${operation} `
+// this updates our currentOpTextEl to whatever is passed to it
+function updateDisplay(a) {
+    currOperandTexEl.innerText = a;
 }
 
-
+// sets the operator to be used depending on the clicked button, this should also save the value on the screen to our prevOperand once pressed
 function setOperator(operator) {
     operation = operator;
-    console.log(operation)
+    prevOperand = currentOperand;
+    prevOperandTextEl.innerText = prevOperand;
+    currentOperand = '';
+    updateDisplay('')
 }
 
 /*
@@ -85,8 +87,6 @@ function setOperator(operator) {
         - if an operator is pressed, we should save the numbers on the screen, then compute
         - if equals is pressed, our screen should display the solution
     4. 
-    
-
 */
 
 /*
