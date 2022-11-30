@@ -1,9 +1,10 @@
 
-function operate(operator, previousOperand, currentOperand) {
+function operate(operation, previousOperand, currentOperand) {
     let solution;
     let prev = parseFloat(previousOperand)
     let curr = parseFloat(currentOperand)
-    switch(operator) {
+    if(currOperand === '') return
+    switch(operation) {
         case '+':
             solution = prev + curr;
             break;
@@ -19,7 +20,8 @@ function operate(operator, previousOperand, currentOperand) {
         default:
             return; 
     }
-    currOperand = solution;
+    currOperand = solution.toString();
+    return currOperand;
 }
 
 // variables
@@ -45,7 +47,7 @@ equalsButton.addEventListener('click', () => {
 })
 
 operationButtons.forEach((operation) => operation.addEventListener('click', () => {
-    setOperator(operation.innerText)
+    setOperator(operation.innerText);
 }))
 
 function appendNumber(number) {
@@ -58,8 +60,13 @@ function updateDisplay() {
 
 function setOperator(operation) {
     operator = operation;
+    if(currOperand == '') return
+    if(prevOperand !== '') {
+        operate(operator, prevOperand, currOperand)
+        // how did this work?
+        updateDisplay();
+    }
     prevOperand = currOperand
     currOperand = '';
-    console.log(operator, prevOperand)
 }
 
