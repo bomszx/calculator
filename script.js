@@ -21,7 +21,9 @@ function operate(operation, previousOperand, currentOperand) {
             return; 
     }
     currOperand = solution.toString();
-    return currOperand;
+    updateDisplay()
+    prevOperand = '';
+    operator = undefined;
 }
 
 // variables
@@ -52,6 +54,7 @@ operationButtons.forEach((operation) => operation.addEventListener('click', () =
 
 function appendNumber(number) {
     currOperand = currOperand.toString() + number.toString();
+    console.log(currOperand)
 }
 
 function updateDisplay() {
@@ -59,13 +62,11 @@ function updateDisplay() {
 }
 
 function setOperator(operation) {
-    operator = operation;
     if(currOperand == '') return
     if(prevOperand !== '') {
         operate(operator, prevOperand, currOperand)
-        // how did this work?
-        updateDisplay();
     }
+    operator = operation;
     prevOperand = currOperand
     currOperand = '';
 }
