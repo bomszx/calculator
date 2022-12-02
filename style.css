@@ -23,18 +23,21 @@
     padding: 1rem;
     border-radius: 5px;
     background-color: rgb(65, 63, 63);
+    width: auto;
 }
 
 .screen {
     display: flex;
-    flex-direction: column;
+    flex-flow:  column wrap;
     height: 100px;
     width: auto;
     border: 1px solid black;
     background-color:  #274c43;
     color: white;
     align-items: flex-end;
+    justify-content: center;
     padding: .3rem;
+
 
 }
 

@@ -15,8 +15,11 @@ function operate(operation, previousOperand, currentOperand) {
             solution = prev * curr;
             break;
         case '/':
-            
-            solution = prev / curr;
+            if(curr == 0) {
+                solution = `I'm dead :(`
+            } else {
+            solution = Math.round(prev / curr * 10) / 10;
+        }
             break;
         default:
             return; 
@@ -75,7 +78,6 @@ function updateDisplay() {
 }
 
 function setOperator(operation) {
-
     if(currOperand == '') return
     if(prevOperand !== '') {
         operate(operator, prevOperand, currOperand)
