@@ -53,6 +53,7 @@ operationButtons.forEach((operation) => operation.addEventListener('click', () =
 }))
 
 function appendNumber(number) {
+    if(currOperand.includes('.') && number === '.') return;
     currOperand = currOperand.toString() + number.toString();
     console.log(currOperand)
 }
@@ -62,6 +63,7 @@ function updateDisplay() {
 }
 
 function setOperator(operation) {
+    // operator = operation;
     if(currOperand == '') return
     if(prevOperand !== '') {
         operate(operator, prevOperand, currOperand)
