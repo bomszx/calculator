@@ -52,6 +52,10 @@ operationButtons.forEach((operation) => operation.addEventListener('click', () =
     setOperator(operation.innerText);
 }))
 
+clearButton.addEventListener('click', () => {
+    clear();
+})
+
 function appendNumber(number) {
     if(currOperand.includes('.') && number === '.') return;
     currOperand = currOperand.toString() + number.toString();
@@ -73,3 +77,9 @@ function setOperator(operation) {
     currOperand = '';
 }
 
+function clear() {
+    currOperandTexEl.innerText = '';
+    prevOperand = '';
+    currOperand = '';
+    operator = undefined;
+}
