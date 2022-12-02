@@ -37,6 +37,7 @@ const numberButtons = document.querySelectorAll('[data-number]');
 const operationButtons = document.querySelectorAll('[data-operator]');
 const equalsButton = document.querySelector('[data-equals]')
 const clearButton = document.querySelector('#button-clear');
+const delButton = document.getElementById('button-delete')
 
 numberButtons.forEach((button) => button.addEventListener('click', () => {
     appendNumber(button.innerText)
@@ -54,6 +55,11 @@ operationButtons.forEach((operation) => operation.addEventListener('click', () =
 
 clearButton.addEventListener('click', () => {
     clear();
+})
+
+delButton.addEventListener('click', () => {
+    del(currOperand);
+    updateDisplay();
 })
 
 function appendNumber(number) {
@@ -82,4 +88,8 @@ function clear() {
     prevOperand = '';
     currOperand = '';
     operator = undefined;
+}
+
+function del() {
+    currOperand = currOperand.slice(0, -1)
 }
