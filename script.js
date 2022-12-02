@@ -15,6 +15,7 @@ function operate(operation, previousOperand, currentOperand) {
             solution = prev * curr;
             break;
         case '/':
+            
             solution = prev / curr;
             break;
         default:
@@ -69,11 +70,12 @@ function appendNumber(number) {
 }
 
 function updateDisplay() {
+    // we assign our currOperand as a dynamic value to our display El
     currOperandTexEl.innerText = currOperand;
 }
 
 function setOperator(operation) {
-    // operator = operation;
+
     if(currOperand == '') return
     if(prevOperand !== '') {
         operate(operator, prevOperand, currOperand)
